@@ -28,6 +28,8 @@ public class BeanCreator {
     @ConditionalOnExpression("propertiesManager.type.name() == 'SIMPLE'")
     public SimpleTrigger simpleTrigger() {
         SimpleTrigger simpleTrigger = new SimpleTrigger();
+        System.out.println("ASDF");
         return simpleTrigger;
     }
+
 }
