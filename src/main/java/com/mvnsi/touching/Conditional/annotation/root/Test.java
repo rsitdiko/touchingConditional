@@ -1,8 +1,10 @@
 package com.mvnsi.touching.Conditional.annotation.root;
 
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,14 @@ public class Test {
     public void test() {
 
         try {
-            SimpleTrigger simpleTrigger = (SimpleTrigger) context.getBean("simpleTrigger");
-            System.out.println("simpleTrigger существует " + simpleTrigger);
-            System.out.println("--------------------------------");
-            CronTrigger cronTrigger = (CronTrigger) context.getBean("cronTrigger");
-            System.out.println("--------------------------------");
-            System.out.println("cronTrigger существует " + cronTrigger);
+
+            System.out.println("------------------------------------------------------------------------------------");
+            for (int i = 0; i < 10; i++) {
+                CronTrigger cronTrigger = (CronTrigger) context.getBean("cronTrigger");
+                System.out.printf("%12d    %s%n", cronTrigger.hashCode(), cronTrigger);
+            }
+            System.out.println("------------------------------------------------------------------------------------");
+
 
         } catch (NoSuchBeanDefinitionException e) {
             System.out.println("--------------------------------");
